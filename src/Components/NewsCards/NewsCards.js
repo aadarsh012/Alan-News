@@ -1,13 +1,18 @@
 import React from "react";
 import NewsCard from "../NewsCard/NewsCard";
 
+import { Grid } from "@mui/material";
+
 const NewsCards = ({ articles }) => {
   return (
     <>
-      Hi
-      {articles.map((article) => (
-        <NewsCard />
-      ))}
+      <Grid container spacing={3} sx={{ p: 4 }}>
+        {articles.map((article, id) => (
+          <Grid item xs={12} sm={6} md={4} lg={4} xl={3}>
+            <NewsCard article={article} id={id + 1} />
+          </Grid>
+        ))}
+      </Grid>
     </>
   );
 };

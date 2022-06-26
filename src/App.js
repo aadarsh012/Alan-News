@@ -18,6 +18,7 @@ function App() {
           console.log(url);
           axios.get(url).then((response) => {
             console.log(response.data);
+
             setNews(response.data.articles);
           });
         } else if (command === "test-command") {
