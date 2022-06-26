@@ -13,11 +13,14 @@ import {
   Avatar,
   Button
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const NewsCard = ({ article, id }) => {
+  const theme = useTheme();
+
   return (
     <>
-      <Card sx={{ height: "100%", minHeight: 550, boxShadow: 4, position: "relative" }}>
+      <Card sx={{ height: "100%", minHeight: 500, boxShadow: 4, position: "relative" }}>
         <CardHeader
           avatar={<Avatar sx={{ bgcolor: "primary.main" }}>{article?.author?.charAt(0)}</Avatar>}
           title={article.author}
