@@ -67,7 +67,16 @@ const NewsCard = ({ article, id }) => {
           title={article.author}
           subheader="Author"
         />
-        <CardMedia component="img" height="200" image={article.urlToImage} alt="News Image" />
+        <CardMedia
+          component="img"
+          height="200"
+          image={
+            article.urlToImage
+              ? article.urlToImage
+              : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-mdGN5s8oseLHmPyP9HqXw6FdYF8Aa0-b6Q&usqp=CAU"
+          }
+          alt="News Image"
+        />
         <CardContent>
           <Box
             sx={{
