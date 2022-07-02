@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     const alanBtnInstance = alanBtn({
       key: alanApiKey,
-      onCommand: ({ command, url, source }) => {
+      onCommand: ({ command, url, source, term, category }) => {
         if (command === "newHeadlines") {
           setLoading(true);
           console.log(url);
@@ -34,7 +34,13 @@ function App() {
                 setNews(response.data.articles);
                 setLoading(false);
                 setError(false);
-                alanBtnInstance.playText(`Here are the latest news from ${source}`);
+                if (source) {
+                  alanBtnInstance.playText(`Here are the latest news from ${source}`);
+                } else if (term) {
+                  alanBtnInstance.playText(`Here are the latest news on ${term}`);
+                } else if (category) {
+                  alanBtnInstance.playText(`Here are the latest news on ${category}`);
+                }
               }
             })
             .catch((err) => {
