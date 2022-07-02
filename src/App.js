@@ -33,6 +33,7 @@ function App() {
                 throw new Error("Sorry, please speak something valid.");
               } else {
                 setNews(response.data.articles);
+                alanBtnInstance.setVisualState({ articles: response.data.articles });
                 setLoading(false);
                 setError(false);
                 if (source) {
