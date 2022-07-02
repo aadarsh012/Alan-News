@@ -7,6 +7,7 @@ import { CircularProgress } from "@mui/material";
 
 import NewsCards from "./Components/NewsCards/NewsCards";
 import Navbar from "./Components/Navbar/Navbar";
+import ErrorPage from "./Components/ErrorPage/ErrorPage";
 
 function App() {
   const alanApiKey = "3f4a6bc5a5076c4ca7347dbe45bb3d392e956eca572e1d8b807a3e2338fdd0dc/stage";
@@ -73,7 +74,7 @@ function App() {
           <NewsCards articles={news} />
         )
       ) : (
-        <>Error</>
+        <ErrorPage />
       )}
     </>
   );
