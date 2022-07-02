@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     const alanBtnInstance = alanBtn({
       key: alanApiKey,
-      onCommand: ({ command, url }) => {
+      onCommand: ({ command, url, source }) => {
         if (command === "newHeadlines") {
           setLoading(true);
           console.log(url);
@@ -34,6 +34,7 @@ function App() {
                 setNews(response.data.articles);
                 setLoading(false);
                 setError(false);
+                alanBtnInstance.playText(`Here are the latest news from ${source}`);
               }
             })
             .catch((err) => {

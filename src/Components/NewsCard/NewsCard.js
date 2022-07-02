@@ -13,14 +13,55 @@ import {
   Avatar,
   Button
 } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import { useTheme } from "@mui/material/styles";
+
+const useStyles = makeStyles({
+  card: {
+    "&:hover": {
+      boxShadow: 10
+    }
+  }
+});
 
 const NewsCard = ({ article, id }) => {
   const theme = useTheme();
+  const classes = useStyles();
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+
+  const dateFormater = (dateString) => {
+    const date = new Date(dateString);
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    const day = date.getDate();
+    return <>{`${months[month]} ${day < 10 ? "0" + day : day}, ${year}`}</>;
+  };
 
   return (
     <>
-      <Card sx={{ height: "100%", minHeight: 500, boxShadow: 4, position: "relative" }}>
+      <Card
+        sx={{
+          height: "100%",
+          minHeight: 500,
+          boxShadow: 4,
+          position: "relative",
+          "&:hover": { boxShadow: 12 }
+        }}
+      >
         <CardHeader
           avatar={<Avatar sx={{ bgcolor: "primary.main" }}>{article?.author?.charAt(0)}</Avatar>}
           title={article.author}
@@ -41,7 +82,7 @@ const NewsCard = ({ article, id }) => {
               {article.source.name}
             </Typography>
             <Typography gutterBottom variant="subtitle2" color="text.secondary">
-              September 26, 2022
+              {dateFormater(article.publishedAt)}
             </Typography>
           </Box>
           <Typography variant="body1" fontWeight={600} gutterBottom>
