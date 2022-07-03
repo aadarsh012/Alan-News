@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Grid, Box, Typography, Paper } from "@mui/material";
+import { Grid, Box, Typography, Paper, AppBar, Toolbar } from "@mui/material";
 import { makeStyles, withStyles } from "@mui/styles";
 
 import video from "./video.mp4";
@@ -36,25 +36,27 @@ const HomePage = ({ play, children }) => {
 
   const classes = useStyles();
   return (
-    <Grid sx={{ minHeight: "100vh" }}>
-      <video
-        ref={vidRef}
-        muted
-        loop
-        src={video}
-        style={{
-          position: "fixed",
-          height: "100%",
-          width: "100%",
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%,-50%)",
-          objectFit: "cover",
-          zIndex: -1
-        }}
-      />
-      {children}
-    </Grid>
+    <>
+      <Grid sx={{ minHeight: "100vh", position: "relative" }}>
+        <video
+          ref={vidRef}
+          muted
+          loop
+          src={video}
+          style={{
+            position: "fixed",
+            height: "100%",
+            width: "100%",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%,-50%)",
+            objectFit: "cover",
+            zIndex: -1
+          }}
+        />
+        {children}
+      </Grid>
+    </>
   );
 };
 

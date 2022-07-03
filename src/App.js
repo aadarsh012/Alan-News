@@ -9,6 +9,7 @@ import NewsCards from "./Components/NewsCards/NewsCards";
 import Navbar from "./Components/Navbar/Navbar";
 import HomePage from "./Components/HomePage/HomePage";
 import Instructions from "./Components/InstructionCards/Instructions";
+import Layout from "./Components/Layout/Layout";
 
 function App() {
   const alanApiKey = "3f4a6bc5a5076c4ca7347dbe45bb3d392e956eca572e1d8b807a3e2338fdd0dc/stage";
@@ -74,29 +75,30 @@ function App() {
 
   return (
     <>
-      <Navbar />
-      <HomePage play={playVideo}>
-        {loading ? (
-          <CircularProgress
-            size={80}
-            thickness={4}
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%,-50%)"
-            }}
-          />
-        ) : news.length ? (
-          <NewsCards articles={news} />
-        ) : (
-          <>
-            {error ? errorComponent : null}
+      <Layout>
+        <HomePage play={playVideo}>
+          {loading ? (
+            <CircularProgress
+              size={80}
+              thickness={4}
+              sx={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%,-50%)"
+              }}
+            />
+          ) : news.length ? (
+            <NewsCards articles={news} />
+          ) : (
+            <>
+              {error ? errorComponent : null}
 
-            <Instructions />
-          </>
-        )}
-      </HomePage>
+              <Instructions />
+            </>
+          )}
+        </HomePage>
+      </Layout>
     </>
   );
 }
