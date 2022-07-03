@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Instructions = () => {
+const Instructions = (props) => {
   const classes = useStyles();
   return (
     <Grid container spacing={5} sx={{ py: 8, px: 5 }}>
@@ -91,8 +91,8 @@ const Instructions = () => {
           sx={{
             p: 2,
             height: "100%",
-            background: "rgba( 0, 255, 239,  0.3)",
-            backdropFilter: "blur(7px)",
+            background: "rgba(255,255,255,0.3)",
+            backdropFilter: "blur(3px)",
 
             borderRadius: 2,
             border: "1px solid rgba(255, 255, 255, 0.18)"

@@ -3,11 +3,12 @@ import React, { useEffect, useState } from "react";
 import alanBtn from "@alan-ai/alan-sdk-web";
 import axios from "axios";
 
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 
 import NewsCards from "./Components/NewsCards/NewsCards";
 import Navbar from "./Components/Navbar/Navbar";
-import ErrorPage from "./Components/ErrorPage/ErrorPage";
+import HomePage from "./Components/HomePage/HomePage";
+import Instructions from "./Components/InstructionCards/Instructions";
 
 function App() {
   const alanApiKey = "3f4a6bc5a5076c4ca7347dbe45bb3d392e956eca572e1d8b807a3e2338fdd0dc/stage";
@@ -15,10 +16,25 @@ function App() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [playVideo, setPlayVideo] = useState(false);
+  const [greeting, setGreeting] = useState(false);
+
+  const errorComponent = (
+    <Typography variant="h6" sx={{ width: "100%", textAlign: "center", p: 2, color: "error.main" }}>
+      Please try to speak something else.
+    </Typography>
+  );
 
   useEffect(() => {
     const alanBtnInstance = alanBtn({
       key: alanApiKey,
+      onButtonState: (status) => {
+        if (status === "LISTEN" || status === "PROCESS" || status === "REPLY") {
+          setPlayVideo(true);
+        } else {
+          setPlayVideo(false);
+        }
+      },
       onCommand: ({ command, url, source, term, category }) => {
         if (command === "newHeadlines") {
           setLoading(true);
@@ -59,8 +75,8 @@ function App() {
   return (
     <>
       <Navbar />
-      {!error ? (
-        loading ? (
+      <HomePage play={playVideo}>
+        {loading ? (
           <CircularProgress
             size={80}
             thickness={4}
@@ -71,12 +87,16 @@ function App() {
               transform: "translate(-50%,-50%)"
             }}
           />
-        ) : (
+        ) : news.length ? (
           <NewsCards articles={news} />
-        )
-      ) : (
-        <ErrorPage />
-      )}
+        ) : (
+          <>
+            {error ? errorComponent : null}
+
+            <Instructions />
+          </>
+        )}
+      </HomePage>
     </>
   );
 }

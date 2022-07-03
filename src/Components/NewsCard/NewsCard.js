@@ -16,17 +16,8 @@ import {
 import { makeStyles } from "@mui/styles";
 import { useTheme } from "@mui/material/styles";
 
-const useStyles = makeStyles({
-  card: {
-    "&:hover": {
-      boxShadow: 10
-    }
-  }
-});
-
 const NewsCard = ({ article, id }) => {
   const theme = useTheme();
-  const classes = useStyles();
 
   const months = [
     "January",
@@ -59,7 +50,7 @@ const NewsCard = ({ article, id }) => {
           minHeight: 500,
           boxShadow: 4,
           position: "relative",
-          "&:hover": { boxShadow: 12 }
+          "&:hover": { boxShadow: 15 }
         }}
       >
         <CardHeader
