@@ -5,6 +5,8 @@ import axios from "axios";
 
 import { CircularProgress, Typography } from "@mui/material";
 
+import Type from "./Components/TypedJS/Type";
+
 import NewsCards from "./Components/NewsCards/NewsCards";
 import Navbar from "./Components/Navbar/Navbar";
 import HomePage from "./Components/HomePage/HomePage";
@@ -93,7 +95,7 @@ function App() {
           ) : (
             <>
               {error ? errorComponent : null}
-
+              <Type />
               <Instructions />
             </>
           )}

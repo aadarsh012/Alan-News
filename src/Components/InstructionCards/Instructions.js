@@ -4,7 +4,7 @@ import { makeStyles, withStyles } from "@mui/styles";
 
 const CustomColor = withStyles({
   root: {
-    background: "-webkit-linear-gradient(45deg, #52006a 30%, #cd113b 90%)",
+    background: "-webkit-linear-gradient(45deg, #4deeea 30%, #74ee15 90%)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent"
   }
@@ -31,16 +31,15 @@ const useStyles = makeStyles((theme) => ({
 const Instructions = (props) => {
   const classes = useStyles();
   return (
-    <Grid container spacing={5} sx={{ py: 8, px: 5 }}>
-      <Grid item xs={4}>
+    <Grid container spacing={5} sx={{ px: 5, py: 3 }}>
+      <Grid item xs={12} sm={6} md={4}>
         <Paper
           fullWidth
           sx={{
             p: 2,
             height: "100%",
-            background: "rgba(255, 55, 244,0.25)",
+            background: "linear-gradient(rgba(1, 10, 61, 0.5),rgba(70, 123, 141, 0.5))",
             backdropFilter: "blur(3px)",
-
             borderRadius: 2,
             border: "1px solid rgba(255, 255, 255, 0.18)"
           }}
@@ -85,13 +84,13 @@ const Instructions = (props) => {
           </Typography>
         </Paper>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={12} sm={6} md={4}>
         <Paper
           fullWidth
           sx={{
             p: 2,
             height: "100%",
-            background: "rgba(255,255,255,0.3)",
+            background: "linear-gradient( rgba(12, 7, 23, 0.5),rgba(63, 0, 113, 0.5))",
             backdropFilter: "blur(3px)",
 
             borderRadius: 2,
@@ -154,14 +153,14 @@ const Instructions = (props) => {
           </Typography>
         </Paper>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={12} sm={6} md={4}>
         <Paper
           fullWidth
           sx={{
             p: 2,
             height: "100%",
-            background: "rgba(248, 231, 28,  0.25)",
-            backdropFilter: "blur(5px)",
+            background: "linear-gradient(rgba(1, 10, 61, 0.5),rgba(70, 123, 141, 0.5))",
+            backdropFilter: "blur(3px)",
 
             borderRadius: 2,
             border: "1px solid rgba(255, 255, 255, 0.18)"

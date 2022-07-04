@@ -4,7 +4,7 @@ import { GitHub, Favorite } from "@mui/icons-material";
 
 const Footer = () => {
   return (
-    <AppBar position="relative" sx={{ bgcolor: "rgba(0,0,0,0.3)", top: "auto" }}>
+    <AppBar position="relative" sx={{ bgcolor: "rgba(0,0,0,0.3)" }}>
       <Toolbar sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
         <Typography variant="body1">Made with </Typography>
         <Favorite
