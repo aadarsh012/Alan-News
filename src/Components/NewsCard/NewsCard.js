@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, createRef, useDebugValue } from "react";
 
 import {
   Grid,
@@ -24,8 +24,25 @@ const useStyles = makeStyles({
 });
 
 const NewsCard = ({ article, id, active }) => {
-  const theme = useTheme();
   const classes = useStyles();
+
+  const [elRef, setElRef] = useState([]);
+
+  const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop - 50);
+
+  useEffect(() => {
+    setElRef((refs) =>
+      Array(20)
+        .fill()
+        .map((_, i) => refs[i] || createRef())
+    );
+  }, []);
+
+  useEffect(() => {
+    if (id === active && elRef[active]) {
+      scrollToRef(elRef[active]);
+    }
+  }, [id, active, elRef]);
 
   const months = [
     "January",
@@ -53,6 +70,7 @@ const NewsCard = ({ article, id, active }) => {
   return (
     <>
       <Card
+        ref={elRef[id]}
         className={active === id ? classes.activeClass : null}
         sx={{
           height: "100%",

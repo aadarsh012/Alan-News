@@ -39,7 +39,7 @@ function App() {
           setPlayVideo(false);
         }
       },
-      onCommand: ({ command, url, source, term, category, readArticles }) => {
+      onCommand: ({ command, url, source, term, category }) => {
         if (command === "newHeadlines") {
           setLoading(true);
           console.log(url);
