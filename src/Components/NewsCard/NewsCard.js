@@ -20,6 +20,13 @@ const useStyles = makeStyles({
   activeClass: {
     boxShadow: 15,
     transform: "perspective(200px)translateZ(12px)"
+  },
+  card: {
+    height: "100%",
+    minHeight: "500px",
+    position: "relative",
+    transition: "0.5s"
+    // "&:hover": { boxShadow: 15 }
   }
 });
 
@@ -71,12 +78,9 @@ const NewsCard = ({ article, id, active }) => {
     <>
       <Card
         ref={elRef[id]}
-        className={active === id ? classes.activeClass : null}
+        className={active === id ? [classes.activeClass, classes.card].join(" ") : classes.card}
         sx={{
-          height: "100%",
-          minHeight: 500,
           boxShadow: 4,
-          position: "relative",
           transition: "0.5s",
           "&:hover": { boxShadow: 15 }
         }}
