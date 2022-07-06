@@ -2,6 +2,7 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import alanBtn from "@alan-ai/alan-sdk-web";
 import axios from "axios";
+import wordsToNumbers from "words-to-numbers";
 
 import { CircularProgress, Typography } from "@mui/material";
 
@@ -39,7 +40,7 @@ function App() {
           setPlayVideo(false);
         }
       },
-      onCommand: ({ command, url, source, term, category }) => {
+      onCommand: ({ command, url, source, term, category, number, articles }) => {
         if (command === "newHeadlines") {
           setLoading(true);
           console.log(url);
@@ -74,9 +75,11 @@ function App() {
               console.log(err.message);
               alanBtnInstance.playText(err.message.toString());
             });
-        }
-        if (command === "read-headline") {
+        } else if (command === "read-headline") {
           setActiveArticle((prevState) => prevState + 1);
+        } else if (command === "open") {
+          const parsedNumber = number.length > 2 ? wordsToNumbers(number, { fuzzy: true }) : number;
+          window.open(articles[Number(parsedNumber) - 1].url, "_blank");
         }
       }
     });
