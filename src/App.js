@@ -17,6 +17,7 @@ function App() {
   const alanApiKey = "3f4a6bc5a5076c4ca7347dbe45bb3d392e956eca572e1d8b807a3e2338fdd0dc/stage";
 
   const [news, setNews] = useState([]);
+  const [activeArticle, setActiveArticle] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [playVideo, setPlayVideo] = useState(false);
@@ -32,13 +33,13 @@ function App() {
     const alanBtnInstance = alanBtn({
       key: alanApiKey,
       onButtonState: (status) => {
-        if (status === "LISTEN" || status === "PROCESS" || status === "REPLY") {
+        if (["LISTEN", "PROCESS", "REPLY"].includes(status)) {
           setPlayVideo(true);
         } else {
           setPlayVideo(false);
         }
       },
-      onCommand: ({ command, url, source, term, category }) => {
+      onCommand: ({ command, url, source, term, category, readArticles }) => {
         if (command === "newHeadlines") {
           setLoading(true);
           console.log(url);
@@ -52,7 +53,7 @@ function App() {
                 throw new Error("Sorry, please speak something valid.");
               } else {
                 setNews(response.data.articles);
-                alanBtnInstance.setVisualState({ articles: response.data.articles });
+                setActiveArticle(0);
                 setLoading(false);
                 setError(false);
                 if (source) {
@@ -62,14 +63,20 @@ function App() {
                 } else if (category) {
                   alanBtnInstance.playText(`Here are the latest news on ${category}`);
                 }
+                alanBtnInstance.callProjectApi(
+                  "read",
+                  { data: response.data.articles },
+                  function (error, result) {}
+                );
               }
             })
             .catch((err) => {
               console.log(err.message);
               alanBtnInstance.playText(err.message.toString());
             });
-        } else if (command === "test-command") {
-          alanBtnInstance.playText("Hi I am alan");
+        }
+        if (command === "read-headline") {
+          setActiveArticle((prevState) => prevState + 1);
         }
       }
     });
@@ -91,7 +98,7 @@ function App() {
               }}
             />
           ) : news.length ? (
-            <NewsCards articles={news} />
+            <NewsCards articles={news} active={activeArticle} />
           ) : (
             <>
               {error ? errorComponent : null}

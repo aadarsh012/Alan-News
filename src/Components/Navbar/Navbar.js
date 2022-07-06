@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { withStyles } from "@mui/styles";
+
+const CustomColor = withStyles({
+  root: {
+    background: "-webkit-linear-gradient(45deg, #4deeea 30%, #74ee15 90%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent"
+  }
+})(Typography);
 
 const Navbar = () => {
   const [hours, setHours] = useState();
@@ -19,13 +28,13 @@ const Navbar = () => {
     <>
       <AppBar position="sticky" sx={{ bgcolor: "transparent", backdropFilter: "blur(5px)" }}>
         <Toolbar>
-          <Typography variant="h5" sx={{ flexGrow: 1 }}>
-            LOGO
-          </Typography>
-          <Typography variant="h6">
+          <CustomColor variant="h5" sx={{ flexGrow: 1 }}>
+            Alan News
+          </CustomColor>
+          <CustomColor fontWeight={600} variant="h6">
             {hours < 10 ? "0" + hours : hours} : {minutes < 10 ? "0" + minutes : minutes} :{" "}
             {seconds < 10 ? "0" + seconds : seconds}
-          </Typography>
+          </CustomColor>
         </Toolbar>
       </AppBar>
     </>

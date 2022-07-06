@@ -16,8 +16,16 @@ import {
 import { makeStyles } from "@mui/styles";
 import { useTheme } from "@mui/material/styles";
 
-const NewsCard = ({ article, id }) => {
+const useStyles = makeStyles({
+  activeClass: {
+    boxShadow: 15,
+    transform: "perspective(200px)translateZ(12px)"
+  }
+});
+
+const NewsCard = ({ article, id, active }) => {
   const theme = useTheme();
+  const classes = useStyles();
 
   const months = [
     "January",
@@ -45,16 +53,22 @@ const NewsCard = ({ article, id }) => {
   return (
     <>
       <Card
+        className={active === id ? classes.activeClass : null}
         sx={{
           height: "100%",
           minHeight: 500,
           boxShadow: 4,
           position: "relative",
+          transition: "0.5s",
           "&:hover": { boxShadow: 15 }
         }}
       >
         <CardHeader
-          avatar={<Avatar sx={{ bgcolor: "primary.main" }}>{article?.author?.charAt(0)}</Avatar>}
+          avatar={
+            <Avatar sx={{ bgcolor: "primary.main" }}>
+              {article?.author?.charAt(0).toUpperCase()}
+            </Avatar>
+          }
           title={article.author}
           subheader="Author"
         />
