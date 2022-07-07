@@ -9,20 +9,18 @@ import { CircularProgress, Typography } from "@mui/material";
 import Type from "./Components/TypedJS/Type";
 
 import NewsCards from "./Components/NewsCards/NewsCards";
-import Navbar from "./Components/Navbar/Navbar";
 import HomePage from "./Components/HomePage/HomePage";
 import Instructions from "./Components/InstructionCards/Instructions";
 import Layout from "./Components/Layout/Layout";
 
 function App() {
-  const alanApiKey = "3f4a6bc5a5076c4ca7347dbe45bb3d392e956eca572e1d8b807a3e2338fdd0dc/stage";
+  const alanApiKey = process.env.REACT_APP_ALAN_API_KEY;
 
   const [news, setNews] = useState([]);
   const [activeArticle, setActiveArticle] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [playVideo, setPlayVideo] = useState(false);
-  const [greeting, setGreeting] = useState(false);
 
   const errorComponent = (
     <Typography variant="h6" sx={{ width: "100%", textAlign: "center", p: 2, color: "error.main" }}>
@@ -43,9 +41,9 @@ function App() {
       onCommand: ({ command, url, source, term, category, number, articles }) => {
         if (command === "newHeadlines") {
           setLoading(true);
-          console.log(url);
+          const urlWithKey = `${url}&apiKey=${process.env.REACT_APP_NEWS_API}`;
           axios
-            .get(url)
+            .get(urlWithKey)
             .then((response) => {
               console.log(response.data);
               if (response.data.articles.length === 0) {
@@ -73,6 +71,8 @@ function App() {
             })
             .catch((err) => {
               console.log(err.message);
+              setError(true);
+              setLoading(false);
               alanBtnInstance.playText(err.message.toString());
             });
         } else if (command === "read-headline") {
