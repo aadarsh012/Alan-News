@@ -45,7 +45,6 @@ function App() {
           axios
             .get(urlWithKey)
             .then((response) => {
-              console.log(response.data);
               if (response.data.articles.length === 0) {
                 setLoading(false);
                 setError(true);

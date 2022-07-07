@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Box, Typography, Paper } from "@mui/material";
+import { Grid, Typography, Paper } from "@mui/material";
 import { makeStyles, withStyles } from "@mui/styles";
 
 const CustomColor = withStyles({
@@ -34,7 +34,6 @@ const Instructions = (props) => {
     <Grid container spacing={5} sx={{ px: 5, py: 3 }}>
       <Grid item xs={12} sm={6} md={4}>
         <Paper
-          fullWidth
           sx={{
             p: 2,
             height: "100%",
@@ -86,7 +85,6 @@ const Instructions = (props) => {
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
         <Paper
-          fullWidth
           sx={{
             p: 2,
             height: "100%",
@@ -155,7 +153,6 @@ const Instructions = (props) => {
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
         <Paper
-          fullWidth
           sx={{
             p: 2,
             height: "100%",

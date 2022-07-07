@@ -8,7 +8,7 @@ const NewsCards = ({ articles, active }) => {
     <>
       <Grid container spacing={3} sx={{ py: 4, px: 8 }}>
         {articles.map((article, id) => (
-          <Grow in timeout={500 * id}>
+          <Grow in timeout={500 * id} key={article.title}>
             <Grid item xs={12} sm={6} md={4} lg={4} xl={3}>
               <NewsCard active={active} article={article} id={id + 1} />
             </Grid>

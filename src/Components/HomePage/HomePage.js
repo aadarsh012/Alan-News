@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import { Grid, Box, Typography, Paper, AppBar, Toolbar } from "@mui/material";
-import { makeStyles, withStyles } from "@mui/styles";
+import { Grid } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
-import video from "./video.mp4";
+import video from "./video2.mp4";
 
 const useStyles = makeStyles((theme) => ({
   image: {
