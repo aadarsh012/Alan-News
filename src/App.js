@@ -14,7 +14,8 @@ import Instructions from "./Components/InstructionCards/Instructions";
 import Layout from "./Components/Layout/Layout";
 
 function App() {
-  const alanApiKey = process.env.REACT_APP_ALAN_API_KEY;
+  const alanApiKey = "3f4a6bc5a5076c4ca7347dbe45bb3d392e956eca572e1d8b807a3e2338fdd0dc/stage";
+  const newsApiKey = "ada1db8769474b488b49087e4d517e0d";
 
   const [news, setNews] = useState([]);
   const [activeArticle, setActiveArticle] = useState(0);
@@ -41,7 +42,7 @@ function App() {
       onCommand: ({ command, url, source, term, category, number, articles }) => {
         if (command === "newHeadlines") {
           setLoading(true);
-          const urlWithKey = `${url}&apiKey=${process.env.REACT_APP_NEWS_API}`;
+          const urlWithKey = `${url}&apiKey=${newsApiKey}`;
           axios
             .get(urlWithKey)
             .then((response) => {
